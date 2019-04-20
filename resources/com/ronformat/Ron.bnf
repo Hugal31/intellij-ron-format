@@ -1,0 +1,26 @@
+{
+  parserClass="com.ronformat.parser.RonParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Ron"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.ronformat.psi"
+  psiImplPackage="com.ronformat.psi.impl"
+
+  elementTypeHolderClass="com.ronformat.psi.RonTypes"
+  elementTypeClass="com.ronformat.psi.RonElementType"
+  tokenTypeClass="com.ronformat.psi.RonTokenType"
+}
+
+// TODO Add #![enable(...)]
+ronFile ::= item_
+
+private item_ ::= (value|COMMENT|BLOCK_COMMENT|CRLF)
+
+value ::= (struct|STRING_LITERAL|NUMBER)
+
+// Actually a struct, a tuple or an enum
+struct ::= IDENTIFIER? STRUCT_BEGIN (field SEPARATOR)* field? STRUCT_END
+
+field ::= IDENTIFIER ASSIGN value

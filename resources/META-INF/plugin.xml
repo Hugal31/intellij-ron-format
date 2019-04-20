@@ -1,0 +1,29 @@
+<idea-plugin>
+  <id>com.hugal31.ronformat</id>
+  <name>RonFormat</name>
+  <version>0.1</version>
+  <vendor>Hugo Laloge</vendor>
+
+  <description><![CDATA[
+      Plugin to enable code formating for the RON (Rust Object Notation) format
+    ]]></description>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.ronformat.RonFileTypeFactory"/>
+    <lang.parserDefinition language="RON" implementationClass="com.ronformat.RonParserDefinition"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>

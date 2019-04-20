@@ -1,0 +1,3 @@
+Ron File(0,6)
+  RonValueImpl(VALUE)(0,6)
+    PsiElement(RonTokenType.STRING_LITERAL)('"Test"')(0,6)
