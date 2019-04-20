@@ -1,1 +1,2 @@
-Test(field: 3, field2: "32", field4: Toto())
+#![enable(truc)]
+Test(field: 3, field2: "32", field4: Toto, field5: [2, 3, 4], field6: {"A": "b"}, field6: Truc)

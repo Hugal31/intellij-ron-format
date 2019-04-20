@@ -40,8 +40,16 @@ SEPARATOR = ","
 
     {IDENTIFIER}                                              { yybegin(YYINITIAL); return RonTypes.IDENTIFIER; }
 
+    "#!"                                                      { yybegin(YYINITIAL); return RonTypes.FILE_ATTRIBUTES_BEGIN; }
+
     "("                                                       { yybegin(YYINITIAL); return RonTypes.STRUCT_BEGIN; }
     ")"                                                       { yybegin(YYINITIAL); return RonTypes.STRUCT_END; }
+
+    "["                                                       { yybegin(YYINITIAL); return RonTypes.ARRAY_BEGIN; }
+    "]"                                                       { yybegin(YYINITIAL); return RonTypes.ARRAY_END; }
+
+    "{"                                                       { yybegin(YYINITIAL); return RonTypes.DICTIONARY_BEGIN; }
+    "}"                                                       { yybegin(YYINITIAL); return RonTypes.DICTIONARY_END; }
 
     // TODO Handle escape
     {STRING_QUOTE}{STRING_CHAR}*{STRING_QUOTE}                { yybegin(YYINITIAL); return RonTypes.STRING_LITERAL; }

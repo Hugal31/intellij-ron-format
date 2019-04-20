@@ -14,13 +14,27 @@
 }
 
 // TODO Add #![enable(...)]
-ronFile ::= item_
+ronFile ::= file_attributes? item_
 
 private item_ ::= (value|COMMENT|BLOCK_COMMENT|CRLF)
 
-value ::= (struct|STRING_LITERAL|NUMBER)
+file_attributes ::= FILE_ATTRIBUTES_BEGIN array
 
-// Actually a struct, a tuple or an enum
-struct ::= IDENTIFIER? STRUCT_BEGIN (field SEPARATOR)* field? STRUCT_END
+value ::= (unit|struct|enum|tuple|array|dictionary|STRING_LITERAL|NUMBER)
+
+unit ::= STRUCT_BEGIN STRUCT_END
+
+// Actually a tuple or an enum
+enum ::= (IDENTIFIER tuple?)
+
+tuple ::= STRUCT_BEGIN value (SEPARATOR value)* SEPARATOR? STRUCT_END
+
+struct ::= IDENTIFIER? STRUCT_BEGIN field (SEPARATOR field)* SEPARATOR? STRUCT_END
+
+array ::= ARRAY_BEGIN (value SEPARATOR)* value? ARRAY_END
+
+dictionary ::= DICTIONARY_BEGIN (dictionary_field SEPARATOR)* dictionary_field? DICTIONARY_END
+
+dictionary_field ::= value ASSIGN value
 
 field ::= IDENTIFIER ASSIGN value
