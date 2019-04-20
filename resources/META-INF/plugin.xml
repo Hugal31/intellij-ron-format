@@ -20,6 +20,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.ronformat.RonFileTypeFactory"/>
     <lang.parserDefinition language="RON" implementationClass="com.ronformat.RonParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="RON" implementationClass="com.ronformat.RonSyntaxHighlighterFactory"/>
   </extensions>
 
   <actions>
