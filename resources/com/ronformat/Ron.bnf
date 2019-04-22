@@ -16,13 +16,13 @@
 }
 
 // TODO Add #![enable(...)]
-ronFile ::= file_attributes? item_
-
-private item_ ::= (value|COMMENT|BLOCK_COMMENT|CRLF)
+ronFile ::= file_attributes? value
 
 file_attributes ::= FILE_ATTRIBUTES_BEGIN array
 
-value ::= (unit|struct|enum|tuple|array|dictionary|STRING_LITERAL|NUMBER)
+value ::= (unit|struct|enum|tuple|array|dictionary|literal)
+
+literal ::= (STRING_LITERAL|NUMBER)
 
 unit ::= STRUCT_BEGIN STRUCT_END
 
@@ -48,3 +48,5 @@ dictionary ::= DICTIONARY_BEGIN dictionary_body DICTIONARY_END
 dictionary_body ::= (dictionary_field SEPARATOR)* dictionary_field?
 
 dictionary_field ::= value ASSIGN value
+
+comment ::= (END_OF_LINE_COMMENT|BLOCK_COMMENT)

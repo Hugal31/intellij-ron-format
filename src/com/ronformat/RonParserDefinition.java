@@ -19,9 +19,20 @@ import org.jetbrains.annotations.NotNull;
 public class RonParserDefinition implements ParserDefinition {
 
     private static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);
-    private static final TokenSet COMMENTS = TokenSet.EMPTY;// TokenSet.create(RonTypes.COMMENT);
+    private static final TokenSet COMMENTS = TokenSet.create(RonTypes.COMMENT, RonTypes.BLOCK_COMMENT);
 
     private static final IFileElementType FILE = new IFileElementType(RonLanguage.INSTANCE);
+
+    @NotNull
+    @Override
+    public PsiElement createElement(ASTNode astNode) {
+        return RonTypes.Factory.createElement(astNode);
+    }
+
+    @Override
+    public PsiFile createFile(FileViewProvider fileViewProvider) {
+        return new RonFile(fileViewProvider);
+    }
 
     @NotNull
     @Override
@@ -55,16 +66,5 @@ public class RonParserDefinition implements ParserDefinition {
     @Override
     public TokenSet getStringLiteralElements() {
         return TokenSet.EMPTY;
-    }
-
-    @NotNull
-    @Override
-    public PsiElement createElement(ASTNode astNode) {
-        return RonTypes.Factory.createElement(astNode);
-    }
-
-    @Override
-    public PsiFile createFile(FileViewProvider fileViewProvider) {
-        return new RonFile(fileViewProvider);
     }
 }

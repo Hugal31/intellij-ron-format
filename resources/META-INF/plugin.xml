@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>com.hugal31.ronformat</id>
+  <id>com.ronformat</id>
   <name>RonFormat</name>
   <version>0.1</version>
   <vendor>Hugo Laloge</vendor>
@@ -19,6 +19,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.ronformat.RonFileTypeFactory"/>
+    <lang.foldingBuilder language="RON" implementationClass="com.ronformat.RonFoldingBuilder"/>
     <lang.parserDefinition language="RON" implementationClass="com.ronformat.RonParserDefinition"/>
     <lang.syntaxHighlighterFactory language="RON" implementationClass="com.ronformat.RonSyntaxHighlighterFactory"/>
   </extensions>
