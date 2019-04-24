@@ -22,7 +22,7 @@ file_attributes ::= FILE_ATTRIBUTES_BEGIN array
 
 value ::= (unit|struct|enum|tuple|array|dictionary|literal)
 
-literal ::= (STRING_LITERAL|NUMBER)
+literal ::= (STRING_LITERAL|CHAR|NUMBER)
 
 unit ::= STRUCT_BEGIN STRUCT_END
 

@@ -34,14 +34,12 @@ public class RonFoldingBuilder extends FoldingBuilderEx {
                 descriptors.add(new FoldingDescriptor(body,
                         new TextRange(begin.getTextRange().getEndOffset(), end.getTextRange().getStartOffset())));
 
-            visitArrayBody(body);
+            body.acceptChildren(this);
         }
 
         @Override
         public void visitArrayBody(@NotNull RonArrayBody body) {
-            for (final RonValue value: body.getValueList()) {
-                visitValue(value);
-            }
+            body.acceptChildren(this);
         }
 
         @Override
@@ -54,14 +52,12 @@ public class RonFoldingBuilder extends FoldingBuilderEx {
                 descriptors.add(new FoldingDescriptor(body,
                         new TextRange(begin.getTextRange().getEndOffset(), end.getTextRange().getStartOffset())));
 
-            visitDictionaryBody(body);
+            body.acceptChildren(this);
         }
 
         @Override
         public void visitDictionaryBody(@NotNull RonDictionaryBody body) {
-            for (final RonDictionaryField field: body.getDictionaryFieldList()) {
-                visitDictionaryField(field);
-            }
+            body.acceptChildren(this);
         }
 
         @Override
@@ -85,26 +81,7 @@ public class RonFoldingBuilder extends FoldingBuilderEx {
 
         @Override
         public void visitValue(@NotNull RonValue value) {
-            RonArray array = value.getArray();
-            RonDictionary dictionary = value.getDictionary();
-            RonEnum enu = value.getEnum();
-            RonStruct struct = value.getStruct();
-            RonTuple tuple = value.getTuple();
-
-            if (array != null)
-                visitArray(array);
-
-            if (enu != null)
-                visitEnum(enu);
-
-            if (dictionary != null)
-                visitDictionary(dictionary);
-
-            if (struct != null)
-                visitStruct(struct);
-
-            if (tuple != null)
-                visitTuple(tuple);
+            value.acceptChildren(this);
         }
 
         @Override
@@ -118,14 +95,12 @@ public class RonFoldingBuilder extends FoldingBuilderEx {
                 descriptors.add(new FoldingDescriptor(body,
                         new TextRange(begin.getTextRange().getEndOffset(), end.getTextRange().getStartOffset())));
 
-            visitStructBody(body);
+            body.acceptChildren(this);
         }
 
         @Override
         public void visitStructBody(@NotNull RonStructBody body) {
-            for (final RonField field: body.getFieldList()) {
-                visitField(field);
-            }
+            body.acceptChildren(this);
         }
 
         @Override
@@ -139,13 +114,12 @@ public class RonFoldingBuilder extends FoldingBuilderEx {
                 descriptors.add(new FoldingDescriptor(body,
                         new TextRange(begin.getTextRange().getEndOffset(), end.getTextRange().getStartOffset())));
 
-            visitTupleBody(body);
+            body.acceptChildren(this);
         }
 
         @Override
         public void visitTupleBody(@NotNull RonTupleBody body) {
-            for (final RonValue value: body.getValueList())
-                visitValue(value);
+            body.acceptChildren(this);
         }
     }
 

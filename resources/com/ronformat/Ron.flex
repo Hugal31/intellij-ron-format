@@ -26,8 +26,12 @@ IDENTIFIER=[:jletter:][:jletterdigit:]*
 // Strings
 STRING_QUOTE = "\""
 STRING_CHAR = [^\"]
+CHAR_QUOTE = "'"
+CHAR_CHAR = [^']
 // Numbers
 NUMBER_CHAR = [0-9]
+NUMBER = {NUMBER_CHAR}+
+FLOAT = {NUMBER}? "." {NUMBER}+
 // Separators
 ASSIGN = ":"
 SEPARATOR = ","
@@ -53,7 +57,8 @@ SEPARATOR = ","
 
     // TODO Handle escape
     {STRING_QUOTE}{STRING_CHAR}*{STRING_QUOTE}                { yybegin(YYINITIAL); return RonTypes.STRING_LITERAL; }
-    {NUMBER_CHAR}+                                            { yybegin(YYINITIAL); return RonTypes.NUMBER; }
+    {CHAR_QUOTE}{CHAR_CHAR}*{CHAR_QUOTE}                      { yybegin(YYINITIAL); return RonTypes.CHAR; }
+    {FLOAT}|{NUMBER}                                          { yybegin(YYINITIAL); return RonTypes.NUMBER; }
     {SEPARATOR}                                               { yybegin(YYINITIAL); return RonTypes.SEPARATOR; }
     {ASSIGN}                                                  { yybegin(YYINITIAL); return RonTypes.ASSIGN; }
 }

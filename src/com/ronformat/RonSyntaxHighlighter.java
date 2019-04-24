@@ -32,6 +32,9 @@ public class RonSyntaxHighlighter extends SyntaxHighlighterBase  {
     private static final TextAttributesKey STRING =
             createTextAttributesKey("RON_STRING", DefaultLanguageHighlighterColors.STRING);
 
+    private static final TextAttributesKey CHAR =
+            createTextAttributesKey("RON_CHAR", DefaultLanguageHighlighterColors.STRING);
+
     private static final TextAttributesKey BAD_CHARACTER =
             createTextAttributesKey("RON_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
@@ -42,6 +45,7 @@ public class RonSyntaxHighlighter extends SyntaxHighlighterBase  {
     private static final TextAttributesKey[] LINE_COMMENT_KEYS = new TextAttributesKey[]{LINE_COMMENT};
     private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[]{NUMBER};
     private static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
+    private static final TextAttributesKey[] CHAR_KEYS = new TextAttributesKey[]{CHAR};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
     @NotNull
@@ -63,7 +67,9 @@ public class RonSyntaxHighlighter extends SyntaxHighlighterBase  {
             return IDENTIFIERS_KEYS;
         } else if (iElementType.equals(RonTypes.NUMBER)) {
             return NUMBER_KEYS;
-        } else if (iElementType.equals(RonTypes.STRING_LITERAL)) {
+        } else if (iElementType.equals(RonTypes.CHAR)) {
+            return CHAR_KEYS;
+        } else  if (iElementType.equals(RonTypes.STRING_LITERAL)) {
             return STRING_KEYS;
         } else if (iElementType.equals(TokenType.BAD_CHARACTER)) {
             return BAD_CHAR_KEYS;
