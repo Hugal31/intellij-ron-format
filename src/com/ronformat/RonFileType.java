@@ -35,6 +35,6 @@ public class RonFileType extends LanguageFileType {
     @Nullable
     @Override
     public Icon getIcon() {
-        return null;
+        return RonIcons.FILE;
     }
 }
