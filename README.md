@@ -5,12 +5,12 @@ Very basic RON format support, feel free to contribute!
 Featuring:
 
 - [ ] Support string escapes!
-- [ ] Support floats!
 - [x] Indenting
 - [x] Folding
 - [x] Syntax highlighting
 - [ ] Other formatting, as spacing between characters
-- [ ] Configurable formatting
+- [x] Configurable indenting
+- [ ] More configurable formatting
 - [ ] Code completion from Rust code
 - [ ] Good icon
 
