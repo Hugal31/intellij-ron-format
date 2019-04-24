@@ -17,6 +17,8 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.ronformat.RonFileTypeFactory"/>
+    <codeStyleSettingsProvider implementation="com.ronformat.settings.RonCodeStyleSettingsProvider"/>
+    <langCodeStyleSettingsProvider implementation="com.ronformat.settings.RonLangCodeStyleSettingsProvider"/>
     <lang.foldingBuilder language="RON" implementationClass="com.ronformat.RonFoldingBuilder"/>
     <lang.formatter language="RON" implementationClass="com.ronformat.RonFormattingModelBuilder"/>
     <lang.parserDefinition language="RON" implementationClass="com.ronformat.RonParserDefinition"/>

@@ -4,7 +4,8 @@ Very basic RON format support, feel free to contribute!
 
 Featuring:
 
-- [x] Detection of invalid RON code
+- [ ] Support string escapes!
+- [ ] Support floats!
 - [x] Indenting
 - [x] Folding
 - [x] Syntax highlighting
