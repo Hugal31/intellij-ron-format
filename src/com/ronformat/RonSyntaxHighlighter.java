@@ -10,43 +10,50 @@ import com.intellij.psi.tree.IElementType;
 import com.ronformat.psi.RonTypes;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 public class RonSyntaxHighlighter extends SyntaxHighlighterBase  {
 
-    private static final TextAttributesKey COMMA =
+    public static final TextAttributesKey COMMA =
             createTextAttributesKey("RON_COMMA", DefaultLanguageHighlighterColors.COMMA);
 
-    private static final TextAttributesKey BLOCK_COMMENT =
+    public static final TextAttributesKey BLOCK_COMMENT =
             createTextAttributesKey("RON_BLOCK_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT);
 
-    private static final TextAttributesKey LINE_COMMENT =
+    public static final TextAttributesKey LINE_COMMENT =
             createTextAttributesKey("RON_LINE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
-    private static final TextAttributesKey IDENTIFIER =
+    public static final TextAttributesKey IDENTIFIER =
             createTextAttributesKey("RON_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
 
-    private static final TextAttributesKey NUMBER =
+    public static final TextAttributesKey NUMBER =
             createTextAttributesKey("RON_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
 
-    private static final TextAttributesKey STRING =
+    public static final TextAttributesKey STRING =
             createTextAttributesKey("RON_STRING", DefaultLanguageHighlighterColors.STRING);
 
-    private static final TextAttributesKey CHAR =
+    public static final TextAttributesKey CHAR =
             createTextAttributesKey("RON_CHAR", DefaultLanguageHighlighterColors.STRING);
 
-    private static final TextAttributesKey BAD_CHARACTER =
+    public static final TextAttributesKey BAD_CHARACTER =
             createTextAttributesKey("RON_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
-    private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
-    private static final TextAttributesKey[] BLOCK_COMMENT_KEYS = new TextAttributesKey[]{BLOCK_COMMENT};
-    private static final TextAttributesKey[] COMMA_KEYS = new TextAttributesKey[]{COMMA};
-    private static final TextAttributesKey[] IDENTIFIERS_KEYS = new TextAttributesKey[]{IDENTIFIER};
-    private static final TextAttributesKey[] LINE_COMMENT_KEYS = new TextAttributesKey[]{LINE_COMMENT};
-    private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[]{NUMBER};
-    private static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
-    private static final TextAttributesKey[] CHAR_KEYS = new TextAttributesKey[]{CHAR};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
+
+    private static final Map<IElementType, TextAttributesKey[]> elementToKeys = new HashMap<>();
+    static {
+        elementToKeys.put(TokenType.BAD_CHARACTER, new TextAttributesKey[]{BAD_CHARACTER});
+        elementToKeys.put(RonTypes.BLOCK_COMMENT, new TextAttributesKey[]{BLOCK_COMMENT});
+        elementToKeys.put(RonTypes.CHAR, new TextAttributesKey[]{CHAR});
+        elementToKeys.put(RonTypes.IDENTIFIER, new TextAttributesKey[]{IDENTIFIER});
+        elementToKeys.put(RonTypes.NUMBER, new TextAttributesKey[]{NUMBER});
+        elementToKeys.put(RonTypes.STRING_LITERAL, new TextAttributesKey[]{STRING});
+        elementToKeys.put(RonTypes.END_OF_LINE_COMMENT, new TextAttributesKey[]{LINE_COMMENT});
+        elementToKeys.put(RonTypes.SEPARATOR, new TextAttributesKey[]{COMMA});
+    }
 
     @NotNull
     @Override
@@ -57,24 +64,6 @@ public class RonSyntaxHighlighter extends SyntaxHighlighterBase  {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType iElementType) {
-        if (iElementType.equals(RonTypes.SEPARATOR)) {
-            return COMMA_KEYS;
-        } else if (iElementType.equals(RonTypes.BLOCK_COMMENT)) {
-            return BLOCK_COMMENT_KEYS;
-        } else if (iElementType.equals(RonTypes.COMMENT)) {
-            return LINE_COMMENT_KEYS;
-        } else if (iElementType.equals(RonTypes.IDENTIFIER)) {
-            return IDENTIFIERS_KEYS;
-        } else if (iElementType.equals(RonTypes.NUMBER)) {
-            return NUMBER_KEYS;
-        } else if (iElementType.equals(RonTypes.CHAR)) {
-            return CHAR_KEYS;
-        } else  if (iElementType.equals(RonTypes.STRING_LITERAL)) {
-            return STRING_KEYS;
-        } else if (iElementType.equals(TokenType.BAD_CHARACTER)) {
-            return BAD_CHAR_KEYS;
-        } else {
-            return EMPTY_KEYS;
-        }
+        return elementToKeys.getOrDefault(iElementType, EMPTY_KEYS);
     }
 }
