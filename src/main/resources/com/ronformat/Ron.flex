@@ -29,11 +29,20 @@ STRING_CHAR = [^\"]
 CHAR_QUOTE = "'"
 CHAR_CHAR = [^']
 // Numbers
-NUMBER_CHAR = [0-9]
-NUMBER_CHAR_NOT_ZERO = [1-9]
-NUMBER_INNER = "0" | {NUMBER_CHAR_NOT_ZERO}{NUMBER_CHAR}*
-NUMBER = ("+" | "-")? {NUMBER_INNER}
-FLOAT = {NUMBER} "." {NUMBER_INNER}?
+DECIMAL_DIGIT_NO_UNDERSCORE = [0-9]
+DECIMA_DIGIT = ({DECIMAL_DIGIT_NO_UNDERSCORE}|"_")
+BINARY_DIGIT_NO_UNDERSCORE = [01]
+BINARY_DIGIT = ({BINARY_DIGIT_NO_UNDERSCORE} | "_")
+OCTAL_DIGIT_NO_UNDERSCORE = [0-7]
+OCTAL_DIGIT = ({OCTAL_DIGIT_NO_UNDERSCORE} | "_")
+HEXA_DIGIT_NO_UNDERSCORE = [0-9A-Fa-f]
+HEXA_DIGIT = ({HEXA_DIGIT_NO_UNDERSCORE} | "_")
+OCTAL_INTEGER = "0o" {OCTAL_DIGIT_NO_UNDERSCORE}{OCTAL_DIGIT}*
+BINARY_INTEGER = "0b" {BINARY_DIGIT_NO_UNDERSCORE}{BINARY_DIGIT}*
+HEXA_INTEGER = "0x" {HEXA_DIGIT_NO_UNDERSCORE}{HEXA_DIGIT}*
+DECIMAL_INTEGER = {DECIMAL_DIGIT_NO_UNDERSCORE}{DECIMA_DIGIT}*
+INTEGER = ("+" | "-")? ({BINARY_INTEGER}|{OCTAL_INTEGER}|{HEXA_INTEGER}|{DECIMAL_INTEGER})
+FLOAT = ("+" | "-")? {DECIMAL_INTEGER}? "." {DECIMAL_INTEGER}?
 // Separators
 ASSIGN = ":"
 SEPARATOR = ","
@@ -60,7 +69,7 @@ SEPARATOR = ","
     // TODO Handle escape
     {STRING_QUOTE}{STRING_CHAR}*{STRING_QUOTE}                { yybegin(YYINITIAL); return RonTypes.STRING_LITERAL; }
     {CHAR_QUOTE}{CHAR_CHAR}*{CHAR_QUOTE}                      { yybegin(YYINITIAL); return RonTypes.CHAR; }
-    {FLOAT}|{NUMBER}                                          { yybegin(YYINITIAL); return RonTypes.NUMBER; }
+    {FLOAT}|{INTEGER}                                         { yybegin(YYINITIAL); return RonTypes.NUMBER; }
     {SEPARATOR}                                               { yybegin(YYINITIAL); return RonTypes.SEPARATOR; }
     {ASSIGN}                                                  { yybegin(YYINITIAL); return RonTypes.ASSIGN; }
 }
