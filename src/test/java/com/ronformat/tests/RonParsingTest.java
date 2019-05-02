@@ -18,6 +18,10 @@ public class RonParsingTest extends ParsingTestCase {
         doTest(true);
     }
 
+    public void testNumbers() {
+        doTest(true);
+    }
+
     @Override
     protected boolean skipSpaces() {
         return true;
