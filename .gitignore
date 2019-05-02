@@ -1,4 +1,5 @@
-/gen
+/src/gen
+/build
 /out
 
 *.jar

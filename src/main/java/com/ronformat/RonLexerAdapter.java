@@ -1,10 +1,11 @@
 package com.ronformat;
 
 import com.intellij.lexer.FlexAdapter;
+import com.ronformat.lexer.RonLexer;
 
-public class RonLexerAdapter extends FlexAdapter {
+class RonLexerAdapter extends FlexAdapter {
 
-    public RonLexerAdapter() {
+    RonLexerAdapter() {
         super(new RonLexer(null));
     }
 

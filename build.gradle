@@ -11,7 +11,10 @@ plugins {
 
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'org.jetbrains.grammarkit'
 apply plugin: 'java'
+
+import org.jetbrains.grammarkit.tasks.*
 
 intellij {
     version 'IC-2019.1' //IntelliJ IDEA 2019.1 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
@@ -22,15 +25,25 @@ intellij {
 group 'com.ronformat'
 version '0.3' // Plugin version
 
-idea {
-    module {
-        generatedSourceDirs.add(file('gen'))
+sourceSets {
+    main {
+        java.srcDirs 'src/main/java', 'src/gen/java'
     }
 }
 
-sourceSets {
-    main {
-        java.srcDirs 'gen'
-        //resources.srcDirs 'resources'
-    }
+task generateRonLexer(type: GenerateLexer) {
+    source = 'src/main/resources/com/ronformat/Ron.flex'
+    targetDir = 'src/gen/java/com/ronformat/lexer'
+    targetClass = 'RonLexer'
+    purgeOldFiles = true
 }
+
+task generateRonParser(type: GenerateParser) {
+    source = 'src/main/resources/com/ronformat/Ron.bnf'
+    targetRoot = 'src/gen/java'
+    pathToParser = '/com/ronformat/parser/RonParser.java'
+    pathToPsiRoot = '/com/ronformat/psi'
+    purgeOldFiles = true
+}
+
+compileJava.dependsOn generateRonLexer, generateRonParser

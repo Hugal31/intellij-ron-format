@@ -12,7 +12,7 @@
   elementTypeClass="com.ronformat.psi.RonElementType"
   tokenTypeClass="com.ronformat.psi.RonTokenType"
 
-  psiImplUtilClass="com.ronformat.psi.impl.RonPsiImplUtil"
+  // psiImplUtilClass="com.ronformat.psi.impl.RonPsiImplUtil"
 }
 
 // TODO Add #![enable(...)]

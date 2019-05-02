@@ -1,4 +1,4 @@
-package com.ronformat;
+package com.ronformat.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
@@ -7,6 +7,7 @@ import com.ronformat.psi.RonTypes;
 
 %%
 
+%public
 %class RonLexer
 %implements FlexLexer
 %unicode
