@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'org.jetbrains.intellij' version '0.4.8'
+    id 'org.jetbrains.grammarkit' version '2019.1'
+}
+
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
+intellij {
+    version 'IC-2019.1' //IntelliJ IDEA 2019.1 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
+    plugins 'coverage' //Bundled plugin dependencies
+    pluginName 'RonFormat'
+}
+
+group 'com.ronformat'
+version '0.3' // Plugin version
+
+idea {
+    module {
+        generatedSourceDirs.add(file('gen'))
+    }
+}
+
+sourceSets {
+    main {
+        java.srcDirs 'gen'
+        //resources.srcDirs 'resources'
+    }
+}

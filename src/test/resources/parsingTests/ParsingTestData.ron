@@ -3,10 +3,8 @@ Test(
     field: 3,
     field2: "32",
     field4: Toto,
-    field5: [
-        2,
-        3,
-        2.1,
+    numbers: [
+        42,
     ],
     field6: {
         "A": "b",
