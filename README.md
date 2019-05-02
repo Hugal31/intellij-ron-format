@@ -14,6 +14,11 @@ Featuring:
 - [ ] Code completion from Rust code
 - [ ] Good icon
 
+## Install
+
+You can download this plugin from the [Jetbrains's website](https://plugins.jetbrains.com/plugin/12344-ronformat),
+or by adding the EAP (Early Access Preview) plugin repository to your IDE: https://plugins.jetbrains.com/plugins/eap/list
+
 ## License
 
 This plugin is licensed under either of
