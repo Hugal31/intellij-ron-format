@@ -16,14 +16,19 @@ apply plugin: 'java'
 
 import org.jetbrains.grammarkit.tasks.*
 
+group 'com.ronformat'
+version '0.3' // Plugin version
+
 intellij {
     version 'IC-2019.1' //IntelliJ IDEA 2019.1 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
     plugins 'coverage' //Bundled plugin dependencies
     pluginName 'RonFormat'
 }
 
-group 'com.ronformat'
-version '0.3' // Plugin version
+publishPlugin {
+    token intellijPublishToken
+    channels publishChannel
+}
 
 sourceSets {
     main {
