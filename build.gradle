@@ -17,7 +17,7 @@ apply plugin: 'java'
 import org.jetbrains.grammarkit.tasks.*
 
 group 'com.ronformat'
-version '0.3' // Plugin version
+version '0.3.1' // Plugin version
 
 intellij {
     version 'IC-2019.1' //IntelliJ IDEA 2019.1 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases

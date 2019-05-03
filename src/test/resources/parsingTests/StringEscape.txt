@@ -1,0 +1,4 @@
+Ron File
+  RonValueImpl(VALUE)
+    RonLiteralImpl(LITERAL)
+      PsiElement(RonTokenType.STRING_LITERAL)('"This is a string with an escape\" in it. Harder: \\\". It also contains other escape characters, like \t and \n."')

@@ -22,6 +22,8 @@ public class RonParsingTest extends ParsingTestCase {
         doTest(true);
     }
 
+    public void testStringEscape() { doTest(true); }
+
     @Override
     protected boolean skipSpaces() {
         return true;

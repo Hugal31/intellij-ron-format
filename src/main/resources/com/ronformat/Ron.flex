@@ -25,8 +25,8 @@ BLOCK_COMMENT="/*" ~"*/"
 // Identifiers
 IDENTIFIER=[:jletter:][:jletterdigit:]*
 // Strings
-STRING_QUOTE = "\""
-STRING_CHAR = [^\"]
+STRING_QUOTE = \"
+STRING_CHAR = ( [^\\\"] | \\[^] )
 CHAR_QUOTE = "'"
 CHAR_CHAR = [^']
 // Numbers
