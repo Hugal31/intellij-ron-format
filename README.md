@@ -4,7 +4,6 @@ Very basic RON format support, feel free to contribute!
 
 Featuring:
 
-- [ ] Support string escapes!
 - [x] Indenting
 - [x] Folding
 - [x] Syntax highlighting
@@ -17,7 +16,7 @@ Featuring:
 ## Install
 
 You can download this plugin from the [Jetbrains's website](https://plugins.jetbrains.com/plugin/12344-ronformat),
-or by adding the EAP (Early Access Preview) plugin repository to your IDE: https://plugins.jetbrains.com/plugins/eap/list
+or within the IDE.
 
 ## License
 

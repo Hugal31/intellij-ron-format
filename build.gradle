@@ -30,6 +30,10 @@ publishPlugin {
     channels publishChannel
 }
 
+patchPluginXml {
+    changeNotes 'Add support for string escapes.'
+}
+
 sourceSets {
     main {
         java.srcDirs 'src/main/java', 'src/gen/java'
